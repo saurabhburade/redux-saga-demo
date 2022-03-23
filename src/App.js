@@ -1,16 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch()
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await result.json();
-      console.log({ data });
-    };
-    fetchData();
+    dispatch({ type: "FETCH_DATA_INIT" });
   }, []);
   return (
     <div className="App bg-blue-500">
